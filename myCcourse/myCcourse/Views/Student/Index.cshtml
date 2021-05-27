@@ -25,7 +25,7 @@
             <a href="">个人中心<span class="layui-badge-dot"></span></a>
         </li>
         <li class="layui-nav-item">
-            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">@HttpContext.Current.Session["t_name"]</a>
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">@HttpContext.Current.Session["s_name"]</a>
             <dl class="layui-nav-child">
                 <dd><a href="javascript:;">修改信息</a></dd>
                 <dd><a href="javascript:;">安全管理</a></dd>
@@ -36,7 +36,7 @@
 
     <div class="container">
         @* 头部 *@
-        <div style="text-align:center;margin-top:50px"><h1>教师管理系统</h1></div>
+        <div style="text-align:center;margin-top:50px"><h1>学生选课系统</h1></div>
         @* 栅格系统 *@
         <div style="margin-top:60px;">
             <div class="layui-row layui-col-space5">
@@ -44,12 +44,22 @@
                     <div class="layui-row grid-demo">
                         <div class="layui-col-md4" style="height:400px;background-color:#09619F;">
                             @*//矢量图标*@
-                            <span class="glyphicon glyphicon-user" style="font-size:130px;margin-left:50px;color:white;margin-top:130px;"></span>
-                            <p style="color:white;margin-left:80px;margin-top:10px;">个人信息</p>
+                            <span class="glyphicon glyphicon-user" style="font-size:130px;margin-left:50px;color:white;margin-top:130px;">
+                            </span>
+                        <p style="position: relative;left:200px;top:-90px;color:white;">
+                            姓名：@ViewBag.studentName
+                            <br />
+                            <br />
+                            学院：@ViewBag.collegeName
+                            <br />
+                            <br />
+                            班级：@ViewBag.classNum 班
+                        </p>
+                            <p style="color:white;margin-left:80px;margin-top:10px;position: relative;top:-90px;color:white;">个人信息</p>
                         </div>
                         <div class="layui-col-md2" style="height:400px;background-color:#4FB5C7;">
                             <span class="glyphicon glyphicon-random" style="font-size:130px;margin-left:10px;color:white;margin-top:130px;"></span>
-                            <p style="color:white;margin-left:50px;margin-top:10px;">发布课程</p>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">选课中心</p>
 
                         </div>
                         <div class="layui-col-md2" style="height:200px;background-color:#1978D8;">
@@ -71,7 +81,7 @@
                         </div>
                         <div class="layui-col-md2" style="height:200px;background-color:#187D9A;">
                             <span class="glyphicon glyphicon-hdd" style="font-size:130px;margin-left:20px;color:white;margin-top:10px;"></span>
-                            <p style="color:white;margin-left:50px;margin-top:10px;">课程成绩与查询</p>
+                            <p style="color:white;margin-left:30px;margin-top:10px;">课程成绩与查询</p>
                         </div>
                         <div class="layui-col-md2" style="height:200px;background-color:#A0CF41;">
                             <span class="glyphicon glyphicon-subtitles" style="font-size:130px;margin-left:25px;color:white;margin-top:10px;"></span>

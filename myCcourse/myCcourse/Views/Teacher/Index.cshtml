@@ -45,7 +45,13 @@
                         <div class="layui-col-md4" style="height:400px;background-color:#09619F;">
                             @*//矢量图标*@
                             <span class="glyphicon glyphicon-user" style="font-size:130px;margin-left:50px;color:white;margin-top:130px;"></span>
-                            <p style="color:white;margin-left:80px;margin-top:10px;">个人信息</p>
+                            <p style="position: relative;left:200px;top:-55px;color:white;">
+                                姓名：@ViewBag.teacherName
+                                <br />
+                                <br />
+                                类型：@ViewBag.type
+                            </p>
+                            <p style="color:white;margin-left:80px;margin-top:10px;position: relative;top:-50px;color:white;">个人信息</p>
                         </div>
                         <div class="layui-col-md2" style="height:400px;background-color:#4FB5C7;">
                             <span class="glyphicon glyphicon-random" style="font-size:130px;margin-left:10px;color:white;margin-top:130px;"></span>
