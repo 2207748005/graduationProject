@@ -1,0 +1,768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CourseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="arrangement">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="cs_id" />
+          </Key>
+          <Property Name="cs_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="classNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="cl_id" Type="int" />
+        </EntityType>
+        <EntityType Name="college">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="collegeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inform">
+          <Key>
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="i_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="message" Type="nvarchar(max)" />
+          <Property Name="datatime" Type="smalldatetime" />
+          <Property Name="in_id" Type="int" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_age" Type="int" />
+          <Property Name="s_phone" Type="int" />
+          <Property Name="s_sex" Type="nvarchar" MaxLength="3" />
+          <Property Name="s_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="st_id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="t_id" />
+          </Key>
+          <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="t_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="t_age" Type="int" />
+          <Property Name="teachingAge" Type="int" />
+          <Property Name="sex" Type="nvarchar" MaxLength="10" />
+          <Property Name="t_Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="t_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="t_type" Type="int" />
+        </EntityType>
+        <EntityType Name="teacher_Type">
+          <Key>
+            <PropertyRef Name="tt_id" />
+          </Key>
+          <Property Name="tt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Course.dbo.View_student_class_college”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="View_student_class_college">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="collegeName" />
+            <PropertyRef Name="cs_id" />
+            <PropertyRef Name="grade" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="s_name" />
+            <PropertyRef Name="s_password" />
+          </Key>
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="collegeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cs_id" Type="int" Nullable="false" />
+          <Property Name="grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="classNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="cl_id" Type="int" />
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="s_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_age" Type="int" />
+          <Property Name="s_phone" Type="int" />
+          <Property Name="s_sex" Type="nvarchar" MaxLength="3" />
+          <Property Name="s_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="st_id" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Course.dbo.View_teacer_Type”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="View_teacer_Type">
+          <Key>
+            <PropertyRef Name="t_id" />
+            <PropertyRef Name="t_name" />
+            <PropertyRef Name="tt_id" />
+          </Key>
+          <Property Name="t_id" Type="int" Nullable="false" />
+          <Property Name="t_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="t_age" Type="int" />
+          <Property Name="teachingAge" Type="int" />
+          <Property Name="sex" Type="nvarchar" MaxLength="10" />
+          <Property Name="t_Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="t_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="t_type" Type="int" />
+          <Property Name="tt_id" Type="int" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Course.dbo.Viewt_class_college”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Viewt_class_college">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="collegeName" />
+            <PropertyRef Name="cs_id" />
+            <PropertyRef Name="grade" />
+          </Key>
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="collegeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cs_id" Type="int" Nullable="false" />
+          <Property Name="grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="classNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="cl_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__class__cl_id__73BA3083">
+          <End Role="college" Type="Self.college" Multiplicity="0..1" />
+          <End Role="class" Type="Self.class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="college">
+              <PropertyRef Name="c_id" />
+            </Principal>
+            <Dependent Role="class">
+              <PropertyRef Name="cl_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__inform__in_id__628FA481">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+          <End Role="inform" Type="Self.inform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="t_id" />
+            </Principal>
+            <Dependent Role="inform">
+              <PropertyRef Name="in_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__st_id__76969D2E">
+          <End Role="class" Type="Self.class" Multiplicity="0..1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="cs_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="st_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teacher__t_type__5DCAEF64">
+          <End Role="teacher_Type" Type="Self.teacher_Type" Multiplicity="0..1" />
+          <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher_Type">
+              <PropertyRef Name="tt_id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="t_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CourseModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="arrangement" EntityType="Self.arrangement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="college" EntityType="Self.college" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inform" EntityType="Self.inform" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teacher_Type" EntityType="Self.teacher_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_student_class_college" EntityType="Self.View_student_class_college" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_student_class_college].[c_id] AS [c_id], 
+    [View_student_class_college].[collegeName] AS [collegeName], 
+    [View_student_class_college].[cs_id] AS [cs_id], 
+    [View_student_class_college].[grade] AS [grade], 
+    [View_student_class_college].[classNum] AS [classNum], 
+    [View_student_class_college].[cl_id] AS [cl_id], 
+    [View_student_class_college].[s_id] AS [s_id], 
+    [View_student_class_college].[s_name] AS [s_name], 
+    [View_student_class_college].[s_password] AS [s_password], 
+    [View_student_class_college].[s_age] AS [s_age], 
+    [View_student_class_college].[s_phone] AS [s_phone], 
+    [View_student_class_college].[s_sex] AS [s_sex], 
+    [View_student_class_college].[s_address] AS [s_address], 
+    [View_student_class_college].[st_id] AS [st_id]
+    FROM [dbo].[View_student_class_college] AS [View_student_class_college]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_teacer_Type" EntityType="Self.View_teacer_Type" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_teacer_Type].[t_id] AS [t_id], 
+    [View_teacer_Type].[t_name] AS [t_name], 
+    [View_teacer_Type].[t_password] AS [t_password], 
+    [View_teacer_Type].[t_age] AS [t_age], 
+    [View_teacer_Type].[teachingAge] AS [teachingAge], 
+    [View_teacer_Type].[sex] AS [sex], 
+    [View_teacer_Type].[t_Phone] AS [t_Phone], 
+    [View_teacer_Type].[t_Email] AS [t_Email], 
+    [View_teacer_Type].[t_type] AS [t_type], 
+    [View_teacer_Type].[tt_id] AS [tt_id], 
+    [View_teacer_Type].[type] AS [type]
+    FROM [dbo].[View_teacer_Type] AS [View_teacer_Type]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Viewt_class_college" EntityType="Self.Viewt_class_college" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Viewt_class_college].[c_id] AS [c_id], 
+    [Viewt_class_college].[collegeName] AS [collegeName], 
+    [Viewt_class_college].[cs_id] AS [cs_id], 
+    [Viewt_class_college].[grade] AS [grade], 
+    [Viewt_class_college].[classNum] AS [classNum], 
+    [Viewt_class_college].[cl_id] AS [cl_id]
+    FROM [dbo].[Viewt_class_college] AS [Viewt_class_college]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__class__cl_id__73BA3083" Association="Self.FK__class__cl_id__73BA3083">
+            <End Role="college" EntitySet="college" />
+            <End Role="class" EntitySet="class" />
+          </AssociationSet>
+          <AssociationSet Name="FK__inform__in_id__628FA481" Association="Self.FK__inform__in_id__628FA481">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="inform" EntitySet="inform" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__st_id__76969D2E" Association="Self.FK__student__st_id__76969D2E">
+            <End Role="class" EntitySet="class" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teacher__t_type__5DCAEF64" Association="Self.FK__teacher__t_type__5DCAEF64">
+            <End Role="teacher_Type" EntitySet="teacher_Type" />
+            <End Role="teacher" EntitySet="teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CourseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="CourseEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="arrangements" EntityType="CourseModel.arrangement" />
+          <EntitySet Name="informs" EntityType="CourseModel.inform" />
+          <EntitySet Name="teachers" EntityType="CourseModel.teacher" />
+          <EntitySet Name="teacher_Type" EntityType="CourseModel.teacher_Type" />
+          <EntitySet Name="View_teacer_Type" EntityType="CourseModel.View_teacer_Type" />
+          <AssociationSet Name="FK__inform__in_id__628FA481" Association="CourseModel.FK__inform__in_id__628FA481">
+            <End Role="teacher" EntitySet="teachers" />
+            <End Role="inform" EntitySet="informs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teacher__t_type__5DCAEF64" Association="CourseModel.FK__teacher__t_type__5DCAEF64">
+            <End Role="teacher_Type" EntitySet="teacher_Type" />
+            <End Role="teacher" EntitySet="teachers" />
+          </AssociationSet>
+          <EntitySet Name="classes" EntityType="CourseModel.class" />
+          <EntitySet Name="colleges" EntityType="CourseModel.college" />
+          <EntitySet Name="students" EntityType="CourseModel.student" />
+          <EntitySet Name="View_student_class_college" EntityType="CourseModel.View_student_class_college" />
+          <AssociationSet Name="FK__class__cl_id__73BA3083" Association="CourseModel.FK__class__cl_id__73BA3083">
+            <End Role="college" EntitySet="colleges" />
+            <End Role="class" EntitySet="classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__st_id__76969D2E" Association="CourseModel.FK__student__st_id__76969D2E">
+            <End Role="class" EntitySet="classes" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CourseModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CourseModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Viewt_class_college" EntityType="CourseModel.Viewt_class_college" />
+        </EntityContainer>
+        <EntityType Name="arrangement">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="inform">
+          <Key>
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="i_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="datatime" Type="DateTime" Precision="0" />
+          <Property Name="in_id" Type="Int32" />
+          <NavigationProperty Name="teacher" Relationship="CourseModel.FK__inform__in_id__628FA481" FromRole="inform" ToRole="teacher" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="t_id" />
+          </Key>
+          <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="t_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="t_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="t_age" Type="Int32" />
+          <Property Name="teachingAge" Type="Int32" />
+          <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="t_Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="t_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="t_type" Type="Int32" />
+          <NavigationProperty Name="informs" Relationship="CourseModel.FK__inform__in_id__628FA481" FromRole="teacher" ToRole="inform" />
+          <NavigationProperty Name="teacher_Type" Relationship="CourseModel.FK__teacher__t_type__5DCAEF64" FromRole="teacher" ToRole="teacher_Type" />
+        </EntityType>
+        <EntityType Name="teacher_Type">
+          <Key>
+            <PropertyRef Name="tt_id" />
+          </Key>
+          <Property Name="tt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="teachers" Relationship="CourseModel.FK__teacher__t_type__5DCAEF64" FromRole="teacher_Type" ToRole="teacher" />
+        </EntityType>
+        <EntityType Name="View_teacer_Type">
+          <Key>
+            <PropertyRef Name="t_id" />
+            <PropertyRef Name="t_name" />
+            <PropertyRef Name="tt_id" />
+          </Key>
+          <Property Name="t_id" Type="Int32" Nullable="false" />
+          <Property Name="t_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="t_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="t_age" Type="Int32" />
+          <Property Name="teachingAge" Type="Int32" />
+          <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="t_Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="t_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="t_type" Type="Int32" />
+          <Property Name="tt_id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__inform__in_id__628FA481">
+          <End Type="CourseModel.teacher" Role="teacher" Multiplicity="0..1" />
+          <End Type="CourseModel.inform" Role="inform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="t_id" />
+            </Principal>
+            <Dependent Role="inform">
+              <PropertyRef Name="in_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teacher__t_type__5DCAEF64">
+          <End Type="CourseModel.teacher_Type" Role="teacher_Type" Multiplicity="0..1" />
+          <End Type="CourseModel.teacher" Role="teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher_Type">
+              <PropertyRef Name="tt_id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="t_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="cs_id" />
+          </Key>
+          <Property Name="cs_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="grade" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="classNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cl_id" Type="Int32" />
+          <NavigationProperty Name="college" Relationship="CourseModel.FK__class__cl_id__73BA3083" FromRole="class" ToRole="college" />
+          <NavigationProperty Name="students" Relationship="CourseModel.FK__student__st_id__76969D2E" FromRole="class" ToRole="student" />
+        </EntityType>
+        <EntityType Name="college">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="collegeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="classes" Relationship="CourseModel.FK__class__cl_id__73BA3083" FromRole="college" ToRole="class" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="s_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="s_age" Type="Int32" />
+          <Property Name="s_phone" Type="Int32" />
+          <Property Name="s_sex" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="s_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="st_id" Type="Int32" />
+          <NavigationProperty Name="class" Relationship="CourseModel.FK__student__st_id__76969D2E" FromRole="student" ToRole="class" />
+        </EntityType>
+        <EntityType Name="View_student_class_college">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="collegeName" />
+            <PropertyRef Name="cs_id" />
+            <PropertyRef Name="grade" />
+            <PropertyRef Name="s_id" />
+            <PropertyRef Name="s_name" />
+            <PropertyRef Name="s_password" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="collegeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cs_id" Type="Int32" Nullable="false" />
+          <Property Name="grade" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="classNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cl_id" Type="Int32" />
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="s_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="s_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="s_age" Type="Int32" />
+          <Property Name="s_phone" Type="Int32" />
+          <Property Name="s_sex" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="s_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="st_id" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__class__cl_id__73BA3083">
+          <End Type="CourseModel.college" Role="college" Multiplicity="0..1" />
+          <End Type="CourseModel.class" Role="class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="college">
+              <PropertyRef Name="c_id" />
+            </Principal>
+            <Dependent Role="class">
+              <PropertyRef Name="cl_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__st_id__76969D2E">
+          <End Type="CourseModel.class" Role="class" Multiplicity="0..1" />
+          <End Type="CourseModel.student" Role="student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="cs_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="st_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Viewt_class_college">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="collegeName" />
+            <PropertyRef Name="cs_id" />
+            <PropertyRef Name="grade" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="collegeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cs_id" Type="Int32" Nullable="false" />
+          <Property Name="grade" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="classNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cl_id" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CourseModelStoreContainer" CdmEntityContainer="CourseEntities4">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CourseModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CourseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="arrangements">
+            <EntityTypeMapping TypeName="CourseModel.arrangement">
+              <MappingFragment StoreEntitySet="arrangement">
+                <ScalarProperty Name="a_id" ColumnName="a_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="informs">
+            <EntityTypeMapping TypeName="CourseModel.inform">
+              <MappingFragment StoreEntitySet="inform">
+                <ScalarProperty Name="in_id" ColumnName="in_id" />
+                <ScalarProperty Name="datatime" ColumnName="datatime" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teachers">
+            <EntityTypeMapping TypeName="CourseModel.teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="t_type" ColumnName="t_type" />
+                <ScalarProperty Name="t_Email" ColumnName="t_Email" />
+                <ScalarProperty Name="t_Phone" ColumnName="t_Phone" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="teachingAge" ColumnName="teachingAge" />
+                <ScalarProperty Name="t_age" ColumnName="t_age" />
+                <ScalarProperty Name="t_password" ColumnName="t_password" />
+                <ScalarProperty Name="t_name" ColumnName="t_name" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teacher_Type">
+            <EntityTypeMapping TypeName="CourseModel.teacher_Type">
+              <MappingFragment StoreEntitySet="teacher_Type">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="tt_id" ColumnName="tt_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_teacer_Type">
+            <EntityTypeMapping TypeName="CourseModel.View_teacer_Type">
+              <MappingFragment StoreEntitySet="View_teacer_Type">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="tt_id" ColumnName="tt_id" />
+                <ScalarProperty Name="t_type" ColumnName="t_type" />
+                <ScalarProperty Name="t_Email" ColumnName="t_Email" />
+                <ScalarProperty Name="t_Phone" ColumnName="t_Phone" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="teachingAge" ColumnName="teachingAge" />
+                <ScalarProperty Name="t_age" ColumnName="t_age" />
+                <ScalarProperty Name="t_password" ColumnName="t_password" />
+                <ScalarProperty Name="t_name" ColumnName="t_name" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classes">
+            <EntityTypeMapping TypeName="CourseModel.class">
+              <MappingFragment StoreEntitySet="class">
+                <ScalarProperty Name="cl_id" ColumnName="cl_id" />
+                <ScalarProperty Name="classNum" ColumnName="classNum" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="cs_id" ColumnName="cs_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colleges">
+            <EntityTypeMapping TypeName="CourseModel.college">
+              <MappingFragment StoreEntitySet="college">
+                <ScalarProperty Name="collegeName" ColumnName="collegeName" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="CourseModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="st_id" ColumnName="st_id" />
+                <ScalarProperty Name="s_address" ColumnName="s_address" />
+                <ScalarProperty Name="s_sex" ColumnName="s_sex" />
+                <ScalarProperty Name="s_phone" ColumnName="s_phone" />
+                <ScalarProperty Name="s_age" ColumnName="s_age" />
+                <ScalarProperty Name="s_password" ColumnName="s_password" />
+                <ScalarProperty Name="s_name" ColumnName="s_name" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_student_class_college">
+            <EntityTypeMapping TypeName="CourseModel.View_student_class_college">
+              <MappingFragment StoreEntitySet="View_student_class_college">
+                <ScalarProperty Name="st_id" ColumnName="st_id" />
+                <ScalarProperty Name="s_address" ColumnName="s_address" />
+                <ScalarProperty Name="s_sex" ColumnName="s_sex" />
+                <ScalarProperty Name="s_phone" ColumnName="s_phone" />
+                <ScalarProperty Name="s_age" ColumnName="s_age" />
+                <ScalarProperty Name="s_password" ColumnName="s_password" />
+                <ScalarProperty Name="s_name" ColumnName="s_name" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="cl_id" ColumnName="cl_id" />
+                <ScalarProperty Name="classNum" ColumnName="classNum" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="cs_id" ColumnName="cs_id" />
+                <ScalarProperty Name="collegeName" ColumnName="collegeName" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CourseModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CourseModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CourseModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CourseModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CourseModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CourseModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CourseModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CourseModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CourseModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Viewt_class_college">
+            <EntityTypeMapping TypeName="CourseModel.Viewt_class_college">
+              <MappingFragment StoreEntitySet="Viewt_class_college">
+                <ScalarProperty Name="cl_id" ColumnName="cl_id" />
+                <ScalarProperty Name="classNum" ColumnName="classNum" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="cs_id" ColumnName="cs_id" />
+                <ScalarProperty Name="collegeName" ColumnName="collegeName" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

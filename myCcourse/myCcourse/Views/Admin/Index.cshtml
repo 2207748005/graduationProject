@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理系统</title>
+    <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/css/modules/code.css" rel="stylesheet" />
+    <link href="~/Content/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <link href="~/Content/css/modules/layer/default/layer.css" rel="stylesheet" />
+    <link href="~/Content/css/modules/code.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo layui-hide-xs layui-bg-black">管理员系统</div>
+            <!-- 头部区域（可配合layui 已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <!-- 移动端显示 -->
+                <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+                    <i class="layui-icon layui-icon-spread-left"></i>
+                </li>
+               
+                @*<li class="layui-nav-item layui-hide-xs"><a href="">nav 1</a></li>
+                    <li class="layui-nav-item layui-hide-xs"><a href="">nav 2</a></li>
+                    <li class="layui-nav-item layui-hide-xs"><a href="">nav 3</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">nav groups</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="">menu 11</a></dd>
+                            <dd><a href="">menu 22</a></dd>
+                            <dd><a href="">menu 33</a></dd>
+                        </dl>
+                    </li>*@
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                    <a href="javascript:;">
+                        <img src="~/images/QQ图片20210525181746.jpg" class="layui-nav-img" />
+                        @*<img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">*@
+                        @HttpContext.Current.Session["LoginUserName"]
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">个人信息</a></dd>
+                        <dd><a href="">设置</a></dd>
+                        <dd><a href="">退出</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-more-vertical"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        @using (Ajax.BeginForm("AllSelsect", "Admin", new AjaxOptions()
+                        {
+                            //Confirm = "确认提交？",
+                            HttpMethod = "get",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "show"
+                        }))
+                        {
+                            <button style="background-color:#393D49;border:none;margin-left:20px;">查看学生信息</button>
+                            @*<a class="" href="javascript:;">查看学生信息<button style="opacity:0%;"></button></a>*@
+                            @*<input type="submit" value="查询" />*@
+                            @*@Html.ActionLink("查看学生信息",null)*@
+
+                        }
+                    </li>
+
+                    <li class="layui-nav-item">
+                        @using (Ajax.BeginForm("TeacherSelect", "Admin", new AjaxOptions()
+                        {
+                            //Confirm = "确认提交？",
+                            HttpMethod = "get",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "show"
+                        }))
+                        {
+                            <button style="background-color:#393D49;border:none;margin-left:20px;">查看教师信息</button>
+                        }
+                    </li>
+                   
+                    <li class="layui-nav-item">
+                        @using (Ajax.BeginForm("Student", "Admin", new AjaxOptions()
+                        {
+                            Confirm = "确认提交吗？",
+                            HttpMethod = "get",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "show"
+                        }))
+                        {
+                            <button style="background-color:#393D49;border:none;margin-left:20px;">查看班级信息</button>
+                        }
+                    </li>
+                    <li class="layui-nav-item">
+                        @using (Ajax.BeginForm("College", "Admin", new AjaxOptions()
+                        {
+                            Confirm = "确认提交？",
+                            HttpMethod = "get",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "show"
+                        }))
+                        {
+                            <button style="background-color:#393D49;border:none;margin-left:20px;">查看学院信息</button>
+                        }
+                    </li>
+
+                </ul>
+                </div>
+            </div>
+
+            <div class="layui-body" >
+                <div id="show">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>姓名</th>
+                                <th>密码</th>
+                                <th>年龄</th>
+                                <th>教龄</th>
+                                <th>性别</th>
+                                <th>电话</th>
+                                <th>邮箱</th>
+                                <th>任课类型</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.t_id</td>
+                                    <td>@item.t_name</td>
+                                    <td>@item.t_password</td>
+                                    <td>@item.t_age</td>
+                                    <td>@item.teachingAge</td>
+                                    <td>@item.sex</td>
+                                    <td>@item.t_Phone</td>
+                                    <td>@item.t_Email</td>
+                                    <td>@item.type</td>
+                                    <td>
+                                        <button type="button" class="layui-btn">删除</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="layui-footer" id="time">
+                <!-- 底部固定区域 -->
+
+            </div>
+            @* 在线时间的显示 *@
+                            <script type="text/javascript">
+                                function time() {
+                                    var vWeek, vWeek_s, vDay;
+                                    vWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                                    var date = new Date();
+                                    year = date.getFullYear();
+                                    month = date.getMonth() + 1;
+                                    day = date.getDate();
+                                    hours = date.getHours();
+                                    minutes = date.getMinutes();
+                                    seconds = date.getSeconds();
+                                    vWeek_s = date.getDay();
+                                    document.getElementById("time").innerHTML = year + "年" + month + "月" + day + "日" + "\t" + hours + ":" + minutes + ":" + seconds + "\t" + vWeek[vWeek_s];
+
+                                };
+                                setInterval("time()", 1000);
+
+                            </script>
+</div>
+
+    <script src="~/Scripts/layui.js"></script>
+    <script>
+        //JS
+        layui.use(['element', 'layer', 'util'], function () {
+            var element = layui.element
+                , layer = layui.layer
+                , util = layui.util
+                , $ = layui.$;
+
+            //头部事件
+            util.event('lay-header-event', {
+                //左侧菜单事件
+                menuLeft: function (othis) {
+                    layer.msg('展开左侧菜单的操作', { icon: 0 });
+                }
+                , menuRight: function () {
+                    layer.open({
+                        type: 1
+                        , content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
+                        , area: ['260px', '100%']
+                        , offset: 'rt' //右上角
+                        , anim: 5
+                        , shadeClose: true
+                    });
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <style>
+        div {
+            border: solid 5px white;
+        }
+    </style>
+</head>
+<body>
+
+
+    <ul class="layui-nav" style="text-align: right;">
+        <li class="layui-nav-item">
+            <a href="">控制台<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">@HttpContext.Current.Session["t_name"]</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+    <div class="container">
+        @* 头部 *@
+        <div style="text-align:center;margin-top:50px"><h1>教师管理系统</h1></div>
+        @* 栅格系统 *@
+        <div style="margin-top:60px;">
+            <div class="layui-row layui-col-space5">
+                <div class="layui-col-md12">
+                    <div class="layui-row grid-demo">
+                        <div class="layui-col-md4" style="height:400px;background-color:#09619F;">
+                            @*//矢量图标*@
+                            <span class="glyphicon glyphicon-user" style="font-size:130px;margin-left:50px;color:white;margin-top:130px;"></span>
+                            <p style="color:white;margin-left:80px;margin-top:10px;">个人信息</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:400px;background-color:#4FB5C7;">
+                            <span class="glyphicon glyphicon-random" style="font-size:130px;margin-left:10px;color:white;margin-top:130px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">发布课程</p>
+
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#1978D8;">
+                            <span class="glyphicon glyphicon-education" style="font-size:130px;margin-left:10px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">学生评价</p>
+                        </div>
+                        <div class="layui-col-md4" style="height:200px;background-color:#DB6987;">
+                            <span class="glyphicon glyphicon-comment" style="font-size:130px;margin-left:50px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">已收留言</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#90A8E3;">
+                            <span class="glyphicon glyphicon-briefcase" style="font-size:130px;margin-left:10px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">培养方案</p>
+
+                        </div>
+                        <div class="layui-col-md4" style="height:200px;background-color:#8E7AAA;">
+                            <span class="glyphicon glyphicon-bullhorn" style="font-size:130px;margin-left:50px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">已收公告</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#187D9A;">
+                            <span class="glyphicon glyphicon-hdd" style="font-size:130px;margin-left:20px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">课程成绩与查询</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#A0CF41;">
+                            <span class="glyphicon glyphicon-subtitles" style="font-size:130px;margin-left:25px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">培养方案</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#EAAF76;">
+                            <span class="glyphicon glyphicon-stats" style="font-size:130px;margin-left:10px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">授课计划</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#88BAD9;">
+                            <span class="glyphicon glyphicon-bell" style="font-size:130px;margin-left:20px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">学生学分查询</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#B69CCC;">
+                            <span class="glyphicon glyphicon-calendar" style="font-size:130px;margin-left:25px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">工资记录</p>
+                        </div>
+                        <div class="layui-col-md2" style="height:200px;background-color:#09619F;">
+                            <span class="glyphicon glyphicon-tree-deciduous" style="font-size:130px;margin-left:20px;color:white;margin-top:10px;"></span>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">意见留言</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/layui.js"></script>
+    <script>
+        layui.use('element', function () {
+            var element = layui.element;
+
+            //一些事件触发
+            element.on('nav(demo)', function (data) {
+                console.log(data);
+            });
+        });
+        element.on('collapse(filter)', function (data) {
+            console.log(data.show); //得到当前面板的展开状态，true或者false
+            console.log(data.title); //得到当前点击面板的标题区域DOM对象
+            console.log(data.content); //得到当前点击面板的内容区域DOM对象
+        });
+        element.on('nav(filter)', function (elem) {
+            console.log(elem); //得到当前点击的DOM对象
+        });
+
+    </script>
+</body>
+</html>

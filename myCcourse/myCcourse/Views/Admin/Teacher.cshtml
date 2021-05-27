@@ -1,0 +1,46 @@
+﻿<link href="~/Content/css/layui.css" rel="stylesheet" />
+
+    <div id="show">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>密码</th>
+                    <th>年龄</th>
+                    <th>教龄</th>
+                    <th>性别</th>
+                    <th>电话</th>
+                    <th>邮箱</th>
+                    <th>任课类型</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.t_id</td>
+                    <td>@item.t_name</td>
+                    <td>@item.t_password</td>
+                    <td>@item.t_age</td>
+                    <td>@item.teachingAge</td>
+                    <td>@item.sex</td>
+                    <td>@item.t_Phone</td>
+                    <td>@item.t_Email</td>
+                    <td>@item.type</td>
+                    <td>
+                        <button type="button" class="layui-btn">删除</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+

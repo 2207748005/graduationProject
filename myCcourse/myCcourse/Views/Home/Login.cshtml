@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <link href="~/Content/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/layui.js"></script>
+    <style>
+        body {
+            width:100%;
+            height:100%;
+            background-color: #000000;
+            background-image: url('../../images/background.jpg');
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-size:cover;
+            position :absolute;
+            zoom:1;
+        }
+
+        #login {
+            margin-left: 1100px;
+            margin-top: 300px;
+            background-color: white;
+            width: 422px;
+            height: 300px;
+            
+            border-radius: 20px;
+            box-shadow: 0px 0px 12px 3px gray;
+        }
+            /*#login:hover {
+                animation: all 2s;
+                margin-top: 298px;
+            }*/   
+        .col-sm-8 input {
+            width: 200px;
+        }
+
+        .layui-tab li {
+            width: 132px;
+        }
+
+        .layui-this {
+            /*background-color: gray;*/
+            /*border-radius: 20px;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="login" class="layui-anim layui-anim-scaleSpring" style="opacity: 50%;">
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this" style="margin-left:14px;">学生登录</li>
+                <li>教师登录</li>
+                <li>管理员登录</li>
+
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <label style="width:400px;text-align:center;margin-bottom:10px;">学生登录</label>
+                    <label style="width:400px;text-align:center;margin-bottom:10px;">@ViewBag.Error2</label>
+                    @*  *@
+                    <form class="form-horizontal" action="/home/studentLogin" method="post">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">用户名：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> 记住密码
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="btn btn-default">登录</button>
+                            </div>
+                        </div>
+                    </form>。
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab-item layui-show">
+                        <label style="width:400px;text-align:center;margin-bottom:10px;">教师登录</label>
+                        @*  *@
+                        <label style="width:400px;text-align:center;margin-bottom:10px;">@ViewBag.Error1</label>
+                        <form class="form-horizontal" action="/home/teacherLogin" method="post">
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">用户名：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                                <div class="col-sm-8">
+                                    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 记住密码
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-10">
+                                    <button type="submit" class="btn btn-default">登录</button>
+                                </div>
+                            </div>
+                        </form>。
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab-item layui-show">
+                        <label style="width:400px;text-align:center;margin-bottom:10px;">管理员登录</label>
+                        <label style="width:400px;text-align:center;margin-bottom:10px;">@ViewBag.Error</label>
+                        @*  *@
+                        <form class="form-horizontal" action="/home/adminLogin" method="post">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">用户名：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                                <div class="col-sm-8">
+                                    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 记住密码
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-10">
+                                    <button type="submit" class="btn btn-default">登录</button>
+                                </div>
+                            </div>
+                        </form>。
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    //立即执行事件
+    $(function () {
+
+    })
+    $("")
+</script>

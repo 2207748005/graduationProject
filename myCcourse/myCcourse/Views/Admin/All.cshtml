@@ -1,0 +1,44 @@
+﻿
+@model List<myCcourse.Models.View_student_class_college>
+<link href="~/Content/css/layui.css" rel="stylesheet" />
+<div id="show">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>年龄</th>
+                <th>手机号码</th>
+                <th>性别</th>
+                <th>家庭住址</th>
+                <th>年纪</th>
+                <th>班级</th>
+                <th>学院</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.s_id</td>
+                <td>@item.s_name</td>
+                <td>@item.s_password</td>
+                <td>@item.s_age</td>
+                <td>@item.s_phone</td>
+                <td>@item.s_sex</td>
+                <td>@item.s_address</td>
+                <td>@item.grade</td>
+                <td>@item.classNum</td>
+                <td>@item.collegeName</td>
+                <td><button type="button" class="layui-btn">删除</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
