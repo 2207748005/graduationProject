@@ -1,12 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CourseModelStoreContainer" CdmEntityContainer="CourseEntities4">
+  <EntityContainerMapping StorageEntityContainer="CourseModelStoreContainer" CdmEntityContainer="CourseEntities6">
     <EntitySetMapping Name="Admins">
       <EntityTypeMapping TypeName="CourseModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="arrangements">
+      <EntityTypeMapping TypeName="CourseModel.arrangement">
+        <MappingFragment StoreEntitySet="arrangement">
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="colleges">
+      <EntityTypeMapping TypeName="CourseModel.college">
+        <MappingFragment StoreEntitySet="college">
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="collegeName" ColumnName="collegeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="informs">
+      <EntityTypeMapping TypeName="CourseModel.inform">
+        <MappingFragment StoreEntitySet="inform">
+          <ScalarProperty Name="i_id" ColumnName="i_id" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="datatime" ColumnName="datatime" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="in_id" ColumnName="in_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shops">
+      <EntityTypeMapping TypeName="CourseModel.shop">
+        <MappingFragment StoreEntitySet="shop">
+          <ScalarProperty Name="shop_id" ColumnName="shop_id" />
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="i_id" ColumnName="i_id" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="CourseModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="s_name" ColumnName="s_name" />
+          <ScalarProperty Name="s_password" ColumnName="s_password" />
+          <ScalarProperty Name="s_age" ColumnName="s_age" />
+          <ScalarProperty Name="s_phone" ColumnName="s_phone" />
+          <ScalarProperty Name="s_sex" ColumnName="s_sex" />
+          <ScalarProperty Name="s_address" ColumnName="s_address" />
+          <ScalarProperty Name="st_id" ColumnName="st_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -21,112 +71,50 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="arrangements">
-      <EntityTypeMapping TypeName="CourseModel.arrangement">
-        <MappingFragment StoreEntitySet="arrangement">
-          <ScalarProperty Name="a_id" ColumnName="a_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="informs">
-      <EntityTypeMapping TypeName="CourseModel.inform">
-        <MappingFragment StoreEntitySet="inform">
-          <ScalarProperty Name="in_id" ColumnName="in_id" />
-          <ScalarProperty Name="datatime" ColumnName="datatime" />
-          <ScalarProperty Name="message" ColumnName="message" />
-          <ScalarProperty Name="i_id" ColumnName="i_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="teachers">
       <EntityTypeMapping TypeName="CourseModel.teacher">
         <MappingFragment StoreEntitySet="teacher">
-          <ScalarProperty Name="t_type" ColumnName="t_type" />
-          <ScalarProperty Name="t_Email" ColumnName="t_Email" />
-          <ScalarProperty Name="t_Phone" ColumnName="t_Phone" />
-          <ScalarProperty Name="sex" ColumnName="sex" />
-          <ScalarProperty Name="teachingAge" ColumnName="teachingAge" />
-          <ScalarProperty Name="t_age" ColumnName="t_age" />
-          <ScalarProperty Name="t_password" ColumnName="t_password" />
-          <ScalarProperty Name="t_name" ColumnName="t_name" />
           <ScalarProperty Name="t_id" ColumnName="t_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="teacher_Type">
-      <EntityTypeMapping TypeName="CourseModel.teacher_Type">
-        <MappingFragment StoreEntitySet="teacher_Type">
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="tt_id" ColumnName="tt_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="View_teacer_Type">
-      <EntityTypeMapping TypeName="CourseModel.View_teacer_Type">
-        <MappingFragment StoreEntitySet="View_teacer_Type">
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="tt_id" ColumnName="tt_id" />
-          <ScalarProperty Name="t_type" ColumnName="t_type" />
-          <ScalarProperty Name="t_Email" ColumnName="t_Email" />
-          <ScalarProperty Name="t_Phone" ColumnName="t_Phone" />
-          <ScalarProperty Name="sex" ColumnName="sex" />
-          <ScalarProperty Name="teachingAge" ColumnName="teachingAge" />
-          <ScalarProperty Name="t_age" ColumnName="t_age" />
-          <ScalarProperty Name="t_password" ColumnName="t_password" />
           <ScalarProperty Name="t_name" ColumnName="t_name" />
-          <ScalarProperty Name="t_id" ColumnName="t_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="classes">
-      <EntityTypeMapping TypeName="CourseModel.class">
-        <MappingFragment StoreEntitySet="class">
-          <ScalarProperty Name="cl_id" ColumnName="cl_id" />
-          <ScalarProperty Name="classNum" ColumnName="classNum" />
-          <ScalarProperty Name="grade" ColumnName="grade" />
-          <ScalarProperty Name="cs_id" ColumnName="cs_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="colleges">
-      <EntityTypeMapping TypeName="CourseModel.college">
-        <MappingFragment StoreEntitySet="college">
-          <ScalarProperty Name="collegeName" ColumnName="collegeName" />
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="students">
-      <EntityTypeMapping TypeName="CourseModel.student">
-        <MappingFragment StoreEntitySet="student">
-          <ScalarProperty Name="st_id" ColumnName="st_id" />
-          <ScalarProperty Name="s_address" ColumnName="s_address" />
-          <ScalarProperty Name="s_sex" ColumnName="s_sex" />
-          <ScalarProperty Name="s_phone" ColumnName="s_phone" />
-          <ScalarProperty Name="s_age" ColumnName="s_age" />
-          <ScalarProperty Name="s_password" ColumnName="s_password" />
-          <ScalarProperty Name="s_name" ColumnName="s_name" />
-          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="t_password" ColumnName="t_password" />
+          <ScalarProperty Name="t_age" ColumnName="t_age" />
+          <ScalarProperty Name="teachingAge" ColumnName="teachingAge" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="t_Phone" ColumnName="t_Phone" />
+          <ScalarProperty Name="t_Email" ColumnName="t_Email" />
+          <ScalarProperty Name="teacher_Type" ColumnName="teacher_Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="View_student_class_college">
       <EntityTypeMapping TypeName="CourseModel.View_student_class_college">
         <MappingFragment StoreEntitySet="View_student_class_college">
-          <ScalarProperty Name="st_id" ColumnName="st_id" />
-          <ScalarProperty Name="s_address" ColumnName="s_address" />
-          <ScalarProperty Name="s_sex" ColumnName="s_sex" />
-          <ScalarProperty Name="s_phone" ColumnName="s_phone" />
-          <ScalarProperty Name="s_age" ColumnName="s_age" />
-          <ScalarProperty Name="s_password" ColumnName="s_password" />
-          <ScalarProperty Name="s_name" ColumnName="s_name" />
-          <ScalarProperty Name="s_id" ColumnName="s_id" />
-          <ScalarProperty Name="cl_id" ColumnName="cl_id" />
-          <ScalarProperty Name="classNum" ColumnName="classNum" />
-          <ScalarProperty Name="grade" ColumnName="grade" />
-          <ScalarProperty Name="cs_id" ColumnName="cs_id" />
-          <ScalarProperty Name="collegeName" ColumnName="collegeName" />
           <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="collegeName" ColumnName="collegeName" />
+          <ScalarProperty Name="cs_id" ColumnName="cs_id" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="classNum" ColumnName="classNum" />
+          <ScalarProperty Name="cl_id" ColumnName="cl_id" />
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="s_name" ColumnName="s_name" />
+          <ScalarProperty Name="s_password" ColumnName="s_password" />
+          <ScalarProperty Name="s_age" ColumnName="s_age" />
+          <ScalarProperty Name="s_phone" ColumnName="s_phone" />
+          <ScalarProperty Name="s_sex" ColumnName="s_sex" />
+          <ScalarProperty Name="s_address" ColumnName="s_address" />
+          <ScalarProperty Name="st_id" ColumnName="st_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Viewt_class_college">
+      <EntityTypeMapping TypeName="CourseModel.Viewt_class_college">
+        <MappingFragment StoreEntitySet="Viewt_class_college">
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="collegeName" ColumnName="collegeName" />
+          <ScalarProperty Name="cs_id" ColumnName="cs_id" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="classNum" ColumnName="classNum" />
+          <ScalarProperty Name="cl_id" ColumnName="cl_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -154,15 +142,13 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CourseModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CourseModel.Store.sp_upgraddiagrams" />
-    <EntitySetMapping Name="Viewt_class_college">
-      <EntityTypeMapping TypeName="CourseModel.Viewt_class_college">
-        <MappingFragment StoreEntitySet="Viewt_class_college">
+    <EntitySetMapping Name="custs">
+      <EntityTypeMapping TypeName="CourseModel.cust">
+        <MappingFragment StoreEntitySet="custs">
           <ScalarProperty Name="cl_id" ColumnName="cl_id" />
           <ScalarProperty Name="classNum" ColumnName="classNum" />
           <ScalarProperty Name="grade" ColumnName="grade" />
           <ScalarProperty Name="cs_id" ColumnName="cs_id" />
-          <ScalarProperty Name="collegeName" ColumnName="collegeName" />
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

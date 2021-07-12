@@ -1,0 +1,30 @@
+﻿
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.shop_id</td>
+            <td>@item.teacher.teacher_Type</td>
+            <td>@item.teacher.t_name</td>
+            <td>@item.inform.place</td>
+            <td>@item.inform.datatime</td>
+            <td>@item.inform.message</td>
+            <td>
+                @using (Ajax.BeginForm("Delte", "student", new { shop_id = item.shop_id }, new AjaxOptions()
+                {
+                    Confirm = "确认提交？",
+                    HttpMethod = "get",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "show"
+                }))
+                {
+                    <button class="btn btn-danger">删除</button>
+                }
+
+            </td>
+        </tr>
+
+    }
+
+
+

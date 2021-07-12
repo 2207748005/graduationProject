@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "selectCourse";
+    Layout = "~/Views/Shared/_LayoutPagehead.cshtml";
+}
+
+<div class="container">
+    <div style="text-align:center;margin-top:50px"><h1>恭喜你可以选课了~太难了啊！！！</h1></div>
+    
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>编号</td>
+                    <td>课程</td>
+                    <td>发布人</td>
+                    <td>地点</td>
+                    <td>时间</td>
+                    <td>备注</td>
+                    <td>操作</td>
+                </tr>
+                
+            </thead>
+            <tbody>
+                @* 遍历老师表 *@
+                @foreach (var t in Model)
+                {
+                    //遍历通知表
+                    foreach (var i in t.informs)
+                    {
+                        <tr>
+                            <td>@i.i_id</td>
+                            <td>@t.teacher_Type</td>
+                            <td>@t.t_name</td>
+                            <td>@i.place</td>
+                            <td>@i.datatime</td>
+                            <td>@i.message</td>
+                            <td>
+                                @Html.ActionLink("添加","insert",new { t_id = t.t_id ,i_id = i.i_id  },new { @class = "btn btn-success form-control" })
+                            @*<a class="btn btn-danger" href="/Student/insert/t_id=@t.t_id/i_id=@i.i_id">添加</a>*@
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>

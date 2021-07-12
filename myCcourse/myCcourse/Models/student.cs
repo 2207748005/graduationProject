@@ -14,6 +14,12 @@ namespace myCcourse.Models
     
     public partial class student
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public student()
+        {
+            this.shops = new HashSet<shop>();
+        }
+    
         public int s_id { get; set; }
         public string s_name { get; set; }
         public string s_password { get; set; }
@@ -23,6 +29,8 @@ namespace myCcourse.Models
         public string s_address { get; set; }
         public Nullable<int> st_id { get; set; }
     
-        public virtual @class @class { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<shop> shops { get; set; }
+        public virtual cust cust { get; set; }
     }
 }

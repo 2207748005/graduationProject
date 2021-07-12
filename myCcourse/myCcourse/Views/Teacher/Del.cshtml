@@ -1,0 +1,28 @@
+﻿@foreach (var t in Model)
+    {
+
+        foreach (var i in t.informs)
+        {
+            <tr>
+                <td>@i.i_id</td>
+                <td>@t.teacher_Type</td>
+                <td>@t.t_name</td>
+                <td>@i.place</td>
+                <td>@i.datatime</td>
+                <td>@i.message</td>
+                <td>
+                    @using (Ajax.BeginForm("Delte", "teacher", new { i_id = i.i_id }, new AjaxOptions()
+                    {
+                        Confirm = "确认提交？",
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "show"
+                    }))
+                    {
+                        <button class="btn btn-danger">删除</button>
+                    }
+                </td>
+            </tr>
+        }
+
+    }

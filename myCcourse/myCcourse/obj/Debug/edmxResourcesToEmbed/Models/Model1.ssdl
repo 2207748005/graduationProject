@@ -14,7 +14,14 @@
     </Key>
     <Property Name="a_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
-  <EntityType Name="class">
+  <EntityType Name="college">
+    <Key>
+      <PropertyRef Name="c_id" />
+    </Key>
+    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="collegeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="custs">
     <Key>
       <PropertyRef Name="cs_id" />
     </Key>
@@ -23,13 +30,6 @@
     <Property Name="classNum" Type="nvarchar" MaxLength="50" />
     <Property Name="cl_id" Type="int" />
   </EntityType>
-  <EntityType Name="college">
-    <Key>
-      <PropertyRef Name="c_id" />
-    </Key>
-    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="collegeName" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <EntityType Name="inform">
     <Key>
       <PropertyRef Name="i_id" />
@@ -37,7 +37,17 @@
     <Property Name="i_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="message" Type="nvarchar(max)" />
     <Property Name="datatime" Type="smalldatetime" />
+    <Property Name="place" Type="nvarchar" MaxLength="50" />
     <Property Name="in_id" Type="int" />
+  </EntityType>
+  <EntityType Name="shop">
+    <Key>
+      <PropertyRef Name="shop_id" />
+    </Key>
+    <Property Name="shop_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="s_id" Type="int" />
+    <Property Name="i_id" Type="int" />
+    <Property Name="t_id" Type="int" />
   </EntityType>
   <EntityType Name="student">
     <Key>
@@ -74,14 +84,7 @@
     <Property Name="sex" Type="nvarchar" MaxLength="10" />
     <Property Name="t_Phone" Type="nvarchar" MaxLength="20" />
     <Property Name="t_Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="t_type" Type="int" />
-  </EntityType>
-  <EntityType Name="teacher_Type">
-    <Key>
-      <PropertyRef Name="tt_id" />
-    </Key>
-    <Property Name="tt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="teacher_Type" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--生成过程中发现错误:
 警告 6002: 表/视图“Course.dbo.View_student_class_college”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -111,26 +114,6 @@
     <Property Name="st_id" Type="int" />
   </EntityType>
   <!--生成过程中发现错误:
-警告 6002: 表/视图“Course.dbo.View_teacer_Type”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-  <EntityType Name="View_teacer_Type">
-    <Key>
-      <PropertyRef Name="t_id" />
-      <PropertyRef Name="t_name" />
-      <PropertyRef Name="tt_id" />
-    </Key>
-    <Property Name="t_id" Type="int" Nullable="false" />
-    <Property Name="t_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="t_password" Type="nvarchar" MaxLength="50" />
-    <Property Name="t_age" Type="int" />
-    <Property Name="teachingAge" Type="int" />
-    <Property Name="sex" Type="nvarchar" MaxLength="10" />
-    <Property Name="t_Phone" Type="nvarchar" MaxLength="20" />
-    <Property Name="t_Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="t_type" Type="int" />
-    <Property Name="tt_id" Type="int" Nullable="false" />
-    <Property Name="type" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <!--生成过程中发现错误:
 警告 6002: 表/视图“Course.dbo.Viewt_class_college”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
   <EntityType Name="Viewt_class_college">
     <Key>
@@ -148,17 +131,17 @@
   </EntityType>
   <Association Name="FK__class__cl_id__73BA3083">
     <End Role="college" Type="Self.college" Multiplicity="0..1" />
-    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <End Role="custs" Type="Self.custs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="college">
         <PropertyRef Name="c_id" />
       </Principal>
-      <Dependent Role="class">
+      <Dependent Role="custs">
         <PropertyRef Name="cl_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__inform__in_id__628FA481">
+  <Association Name="FK__inform__in_id__04E4BC85">
     <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
     <End Role="inform" Type="Self.inform" Multiplicity="*" />
     <ReferentialConstraint>
@@ -171,10 +154,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__student__st_id__76969D2E">
-    <End Role="class" Type="Self.class" Multiplicity="0..1" />
+    <End Role="custs" Type="Self.custs" Multiplicity="0..1" />
     <End Role="student" Type="Self.student" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="class">
+      <Principal Role="custs">
         <PropertyRef Name="cs_id" />
       </Principal>
       <Dependent Role="student">
@@ -182,15 +165,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__teacher__t_type__5DCAEF64">
-    <End Role="teacher_Type" Type="Self.teacher_Type" Multiplicity="0..1" />
-    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+  <Association Name="FK_shop_inform">
+    <End Role="inform" Type="Self.inform" Multiplicity="0..1" />
+    <End Role="shop" Type="Self.shop" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="teacher_Type">
-        <PropertyRef Name="tt_id" />
+      <Principal Role="inform">
+        <PropertyRef Name="i_id" />
       </Principal>
-      <Dependent Role="teacher">
-        <PropertyRef Name="t_type" />
+      <Dependent Role="shop">
+        <PropertyRef Name="i_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_shop_student">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="shop" Type="Self.shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="shop">
+        <PropertyRef Name="s_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_shop_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="shop" Type="Self.shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="shop">
+        <PropertyRef Name="t_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -228,13 +235,13 @@
   <EntityContainer Name="CourseModelStoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="arrangement" EntityType="Self.arrangement" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="college" EntityType="Self.college" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="custs" EntityType="Self.custs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="inform" EntityType="Self.inform" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="shop" EntityType="Self.shop" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="teacher" EntityType="Self.teacher" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="teacher_Type" EntityType="Self.teacher_Type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="View_student_class_college" EntityType="Self.View_student_class_college" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [View_student_class_college].[c_id] AS [c_id], 
@@ -253,21 +260,6 @@
     [View_student_class_college].[st_id] AS [st_id]
     FROM [dbo].[View_student_class_college] AS [View_student_class_college]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="View_teacer_Type" EntityType="Self.View_teacer_Type" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [View_teacer_Type].[t_id] AS [t_id], 
-    [View_teacer_Type].[t_name] AS [t_name], 
-    [View_teacer_Type].[t_password] AS [t_password], 
-    [View_teacer_Type].[t_age] AS [t_age], 
-    [View_teacer_Type].[teachingAge] AS [teachingAge], 
-    [View_teacer_Type].[sex] AS [sex], 
-    [View_teacer_Type].[t_Phone] AS [t_Phone], 
-    [View_teacer_Type].[t_Email] AS [t_Email], 
-    [View_teacer_Type].[t_type] AS [t_type], 
-    [View_teacer_Type].[tt_id] AS [tt_id], 
-    [View_teacer_Type].[type] AS [type]
-    FROM [dbo].[View_teacer_Type] AS [View_teacer_Type]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="Viewt_class_college" EntityType="Self.Viewt_class_college" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Viewt_class_college].[c_id] AS [c_id], 
@@ -280,19 +272,27 @@
     </EntitySet>
     <AssociationSet Name="FK__class__cl_id__73BA3083" Association="Self.FK__class__cl_id__73BA3083">
       <End Role="college" EntitySet="college" />
-      <End Role="class" EntitySet="class" />
+      <End Role="custs" EntitySet="custs" />
     </AssociationSet>
-    <AssociationSet Name="FK__inform__in_id__628FA481" Association="Self.FK__inform__in_id__628FA481">
+    <AssociationSet Name="FK__inform__in_id__04E4BC85" Association="Self.FK__inform__in_id__04E4BC85">
       <End Role="teacher" EntitySet="teacher" />
       <End Role="inform" EntitySet="inform" />
     </AssociationSet>
     <AssociationSet Name="FK__student__st_id__76969D2E" Association="Self.FK__student__st_id__76969D2E">
-      <End Role="class" EntitySet="class" />
+      <End Role="custs" EntitySet="custs" />
       <End Role="student" EntitySet="student" />
     </AssociationSet>
-    <AssociationSet Name="FK__teacher__t_type__5DCAEF64" Association="Self.FK__teacher__t_type__5DCAEF64">
-      <End Role="teacher_Type" EntitySet="teacher_Type" />
+    <AssociationSet Name="FK_shop_inform" Association="Self.FK_shop_inform">
+      <End Role="inform" EntitySet="inform" />
+      <End Role="shop" EntitySet="shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_shop_student" Association="Self.FK_shop_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="shop" EntitySet="shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_shop_teacher" Association="Self.FK_shop_teacher">
       <End Role="teacher" EntitySet="teacher" />
+      <End Role="shop" EntitySet="shop" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

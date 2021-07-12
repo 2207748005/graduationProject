@@ -17,13 +17,13 @@ namespace myCcourse.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public college()
         {
-            this.classes = new HashSet<@class>();
+            this.custs = new HashSet<cust>();
         }
-    
+        
         public int c_id { get; set; }
         public string collegeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<@class> classes { get; set; }
+        public virtual ICollection<cust> custs { get; set; }
     }
 }

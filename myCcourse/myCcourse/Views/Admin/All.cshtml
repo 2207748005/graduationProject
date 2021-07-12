@@ -1,8 +1,10 @@
 ﻿
 @model List<myCcourse.Models.View_student_class_college>
+
 <link href="~/Content/css/layui.css" rel="stylesheet" />
+
 <div id="show">
-    <table class="layui-table">
+    <table class="layui-table ">
         <colgroup>
             <col width="150">
             <col width="200">
@@ -17,28 +19,71 @@
                 <th>手机号码</th>
                 <th>性别</th>
                 <th>家庭住址</th>
-                <th>年纪</th>
+                <th>年级</th>
                 <th>班级</th>
                 <th>学院</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>@item.s_id</td>
-                <td>@item.s_name</td>
-                <td>@item.s_password</td>
-                <td>@item.s_age</td>
-                <td>@item.s_phone</td>
-                <td>@item.s_sex</td>
-                <td>@item.s_address</td>
-                <td>@item.grade</td>
-                <td>@item.classNum</td>
-                <td>@item.collegeName</td>
-                <td><button type="button" class="layui-btn">删除</button></td>
-            </tr>
+                <tr>
+                    <td>@item.s_id</td>
+                    <td>@item.s_name</td>
+                    <td>@item.s_password</td>
+                    <td>@item.s_age</td>
+                    <td>@item.s_phone</td>
+                    <td>@item.s_sex</td>
+                    <td>@item.s_address</td>
+                    <td>@item.grade</td>
+                    <td>@item.classNum</td>
+                    <td>@item.collegeName</td>
+                    <td>
+                        @using (Ajax.BeginForm("Delte", "admin", new { s_id = item.s_id }, new AjaxOptions
+                        {
+                            Confirm = "确认删除吗？",
+                            HttpMethod = "get",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "show"
+                        }))
+                        {
+                            <button class="layui-btn layui-btn-danger">删除</button>
+                        }
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
+    <button id="btn" class="layui-btn layui-btn-lg layui-btn-normal">添加学生</button>
 </div>
+@*<div style="padding:20px; display:none" id="div">可以</div>*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/layui.js"></script>
+<script>
+    layui.use('layer', function () {
+        var layer = layui.layer;
+
+        //layer.msg('hello');
+        //弹出一个iframe层
+        $('#btn').on('click', function () {
+            layer.open({
+                type: 2,
+                title: '修改页面',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area: ['1000px', '600px'],
+                content: 'Admin/InsertStu'
+            });
+        });
+        //弹出一个页面层
+        //$('#btn').on('click', function () {
+        //    layer.open({
+        //        type: 1,
+        //        area: ['1000px', '360px'],
+        //        shadeClose: true, //点击遮罩关闭
+        //        content: $("#div")
+        //    });
+        //});
+    });
+</script>  

@@ -23,7 +23,7 @@
                 <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
                     <i class="layui-icon layui-icon-spread-left"></i>
                 </li>
-               
+
                 @*<li class="layui-nav-item layui-hide-xs"><a href="">nav 1</a></li>
                     <li class="layui-nav-item layui-hide-xs"><a href="">nav 2</a></li>
                     <li class="layui-nav-item layui-hide-xs"><a href="">nav 3</a></li>
@@ -46,7 +46,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="">个人信息</a></dd>
                         <dd><a href="">设置</a></dd>
-                        <dd><a href="">退出</a></dd>
+                        <dd><a href="/Admin/Quit">退出</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
@@ -90,11 +90,11 @@
                             <button style="background-color:#393D49;border:none;margin-left:20px;">查看教师信息</button>
                         }
                     </li>
-                   
+
                     <li class="layui-nav-item">
                         @using (Ajax.BeginForm("Student", "Admin", new AjaxOptions()
                         {
-                            Confirm = "确认提交吗？",
+                            //Confirm = "确认提交吗？",
                             HttpMethod = "get",
                             InsertionMode = InsertionMode.Replace,
                             UpdateTargetId = "show"
@@ -106,7 +106,7 @@
                     <li class="layui-nav-item">
                         @using (Ajax.BeginForm("College", "Admin", new AjaxOptions()
                         {
-                            Confirm = "确认提交？",
+                            //Confirm = "确认提交？",
                             HttpMethod = "get",
                             InsertionMode = InsertionMode.Replace,
                             UpdateTargetId = "show"
@@ -117,12 +117,13 @@
                     </li>
 
                 </ul>
-                </div>
             </div>
+        </div>
 
-            <div class="layui-body" >
-                <div id="show">
-                    <table class="layui-table">
+        <div class="layui-body">
+            <div id="show">
+                <h1>请选择你要查看的信息</h1>
+                @*<table class="layui-table">
                         <colgroup>
                             <col width="150">
                             <col width="200">
@@ -154,42 +155,42 @@
                                     <td>@item.sex</td>
                                     <td>@item.t_Phone</td>
                                     <td>@item.t_Email</td>
-                                    <td>@item.type</td>
+                                    <td>@item.teacher_Type</td>
                                     <td>
                                         <button type="button" class="layui-btn">删除</button>
                                     </td>
                                 </tr>
                             }
                         </tbody>
-                    </table>
-                </div>
-
+                    </table>*@
             </div>
 
-            <div class="layui-footer" id="time">
-                <!-- 底部固定区域 -->
+        </div>
 
-            </div>
-            @* 在线时间的显示 *@
-                            <script type="text/javascript">
-                                function time() {
-                                    var vWeek, vWeek_s, vDay;
-                                    vWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-                                    var date = new Date();
-                                    year = date.getFullYear();
-                                    month = date.getMonth() + 1;
-                                    day = date.getDate();
-                                    hours = date.getHours();
-                                    minutes = date.getMinutes();
-                                    seconds = date.getSeconds();
-                                    vWeek_s = date.getDay();
-                                    document.getElementById("time").innerHTML = year + "年" + month + "月" + day + "日" + "\t" + hours + ":" + minutes + ":" + seconds + "\t" + vWeek[vWeek_s];
+        <div class="layui-footer" id="time">
+            <!-- 底部固定区域 -->
 
-                                };
-                                setInterval("time()", 1000);
+        </div>
+        @* 在线时间的显示 *@
+        <script type="text/javascript">
+            function time() {
+                var vWeek, vWeek_s, vDay;
+                vWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var date = new Date();
+                year = date.getFullYear();
+                month = date.getMonth() + 1;
+                day = date.getDate();
+                hours = date.getHours();
+                minutes = date.getMinutes();
+                seconds = date.getSeconds();
+                vWeek_s = date.getDay();
+                document.getElementById("time").innerHTML = year + "年" + month + "月" + day + "日" + "\t" + hours + ":" + minutes + ":" + seconds + "\t" + vWeek[vWeek_s];
 
-                            </script>
-</div>
+            };
+            setInterval("time()", 1000);
+
+        </script>
+    </div>
 
     <script src="~/Scripts/layui.js"></script>
     <script>
@@ -219,7 +220,22 @@
             });
 
         });
-    </script>
+        layui.use('layer', function () {
+            var layer = layui.layer;
 
+            layer.msg('hello');
+            $("").on("click", function () {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    skin: 'yourclass',
+                    content: '自定义HTML内容'
+                });
+            })
+        });
+
+    </script>
 </body>
 </html>

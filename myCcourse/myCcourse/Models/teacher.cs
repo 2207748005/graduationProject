@@ -18,6 +18,7 @@ namespace myCcourse.Models
         public teacher()
         {
             this.informs = new HashSet<inform>();
+            this.shops = new HashSet<shop>();
         }
     
         public int t_id { get; set; }
@@ -28,10 +29,11 @@ namespace myCcourse.Models
         public string sex { get; set; }
         public string t_Phone { get; set; }
         public string t_Email { get; set; }
-        public Nullable<int> t_type { get; set; }
+        public string teacher_Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inform> informs { get; set; }
-        public virtual teacher_Type teacher_Type { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<shop> shops { get; set; }
     }
 }

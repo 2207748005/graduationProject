@@ -14,11 +14,20 @@ namespace myCcourse.Models
     
     public partial class inform
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public inform()
+        {
+            this.shops = new HashSet<shop>();
+        }
+    
         public int i_id { get; set; }
         public string message { get; set; }
         public Nullable<System.DateTime> datatime { get; set; }
+        public string place { get; set; }
         public Nullable<int> in_id { get; set; }
     
         public virtual teacher teacher { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<shop> shops { get; set; }
     }
 }

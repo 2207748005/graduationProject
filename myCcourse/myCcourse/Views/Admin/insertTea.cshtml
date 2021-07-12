@@ -1,0 +1,185 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加教师</title>
+    <link href="~/Content/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div>
+            <form class="layui-form layui-form-pane" action="/admin/insert" method="post">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="s_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">请务必填写用户名</div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="s_password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">请务必填写密码</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">年龄</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="s_age" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="s_phone" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <select name="s_sex" lay-filter="aihao">
+                            <option value=""></option>
+                            <option value="男">男</option>
+                            <option value="女" selected="">女</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家庭住址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="s_address" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">年级</label>
+                    <div class="layui-input-block">
+                        <select name="grade" lay-filter="aihao">
+                            <option value="大一">大一</option>
+                            <option value="大二">大二</option>
+                            <option value="大三">大三</option>
+                            <option value="大四" selected="">大四</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">班级</label>
+                    <div class="layui-input-block">
+                        <select name="classNum" lay-filter="aihao">
+                            <option value="1901">1901</option>
+                            <option value="1902">1902</option>
+                            <option value="1903" selected="">1903</option>
+                            <option value="1904">1904</option>
+                            <option value="1905">1905</option>
+                            <option value="1906">1906</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学院</label>
+                    <div class="layui-input-block">
+                        <select name="cl_id" lay-filter="aihao">
+                            <option value=""></option>
+                            <option value="2">护理学院</option>
+                            <option value="1" selected="">信息工程学院</option>
+                            <option value="3">国际教育学院</option>
+                            <option value="4">机电工程学院</option>
+                            <option value="5">生物环境学院</option>
+                            <option value="5">商贸物流学院</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-submit="">确认添加</button>
+                </div>
+            </form>
+
+
+            <script src="~/Scripts/layui.js"></script>
+            <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+            <script>
+            layui.use(['form', 'layedit', 'laydate'], function () {
+                var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , laydate = layui.laydate;
+
+                //日期
+                laydate.render({
+                    elem: '#date'
+                });
+                laydate.render({
+                    elem: '#date1'
+                });
+
+                //创建一个编辑器
+                var editIndex = layedit.build('LAY_demo_editor');
+
+                //自定义验证规则
+                form.verify({
+                    title: function (value) {
+                        if (value.length < 5) {
+                            return '标题至少得5个字符啊';
+                        }
+                    }
+                    , pass: [
+                        /^[\S]{6,12}$/
+                        , '密码必须6到12位，且不能出现空格'
+                    ]
+                    , content: function (value) {
+                        layedit.sync(editIndex);
+                    }
+                });
+
+                //监听指定开关
+                form.on('switch(switchTest)', function (data) {
+                    layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                        offset: '6px'
+                    });
+                    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+                });
+
+                //监听提交
+                form.on('submit(demo1)', function (data) {
+                    layer.alert(JSON.stringify(data.field), {
+                        title: '最终的提交信息'
+                    })
+                    return false;
+                });
+
+                //表单赋值
+                layui.$('#LAY-component-form-setval').on('click', function () {
+                    form.val('example', {
+                        "username": "贤心" // "name": "value"
+                        , "password": "123456"
+                        , "interest": 1
+                        , "like[write]": true //复选框选中状态
+                        , "close": true //开关状态
+                        , "sex": "女"
+                        , "desc": "我爱 layui"
+                    });
+                });
+
+                //表单取值
+                layui.$('#LAY-component-form-getval').on('click', function () {
+                    var data = form.val('example');
+                    alert(JSON.stringify(data));
+                });
+
+            });
+            </script>
+        </div>
+    </div>
+</body>
+</html>

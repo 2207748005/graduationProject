@@ -15,10 +15,10 @@ namespace myCcourse.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class CourseEntities4 : DbContext
+    public partial class CourseEntities6 : DbContext
     {
-        public CourseEntities4()
-            : base("name=CourseEntities4")
+        public CourseEntities6()
+            : base("name=CourseEntities6")
         {
         }
     
@@ -28,17 +28,16 @@ namespace myCcourse.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<arrangement> arrangements { get; set; }
-        public virtual DbSet<inform> informs { get; set; }
-        public virtual DbSet<teacher> teachers { get; set; }
-        public virtual DbSet<teacher_Type> teacher_Type { get; set; }
-        public virtual DbSet<View_teacer_Type> View_teacer_Type { get; set; }
-        public virtual DbSet<@class> classes { get; set; }
         public virtual DbSet<college> colleges { get; set; }
+        public virtual DbSet<inform> informs { get; set; }
+        public virtual DbSet<shop> shops { get; set; }
         public virtual DbSet<student> students { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<teacher> teachers { get; set; }
         public virtual DbSet<View_student_class_college> View_student_class_college { get; set; }
         public virtual DbSet<Viewt_class_college> Viewt_class_college { get; set; }
+        public virtual DbSet<cust> custs { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

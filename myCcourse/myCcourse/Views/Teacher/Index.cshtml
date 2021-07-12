@@ -8,6 +8,8 @@
     <title>Index</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <style>
         div {
             border: solid 5px white;
@@ -15,8 +17,8 @@
     </style>
 </head>
 <body>
-   
 
+    @* 教师首页 *@
     <ul class="layui-nav" style="text-align: right;">
         <li class="layui-nav-item">
             <a href="">控制台<span class="layui-badge">9</span></a>
@@ -29,7 +31,7 @@
             <dl class="layui-nav-child">
                 <dd><a href="javascript:;">修改信息</a></dd>
                 <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退出</a></dd>
+                <dd><a href="/Teacher/Quit">退出</a></dd>
             </dl>
         </li>
     </ul>
@@ -42,7 +44,7 @@
             <div class="layui-row layui-col-space5">
                 <div class="layui-col-md12">
                     <div class="layui-row grid-demo">
-                        <div class="layui-col-md4" style="height:400px;background-color:#09619F;">
+                        <div class="layui-col-md4" id="information" style="height:400px;background-color:#09619F;">
                             @*//矢量图标*@
                             <span class="glyphicon glyphicon-user" style="font-size:130px;margin-left:50px;color:white;margin-top:130px;"></span>
                             <p style="position: relative;left:200px;top:-55px;color:white;">
@@ -53,7 +55,7 @@
                             </p>
                             <p style="color:white;margin-left:80px;margin-top:10px;position: relative;top:-50px;color:white;">个人信息</p>
                         </div>
-                        <div class="layui-col-md2" style="height:400px;background-color:#4FB5C7;">
+                        <div class="layui-col-md2" id="CourseRelease" style="height:400px;background-color:#4FB5C7;">
                             <span class="glyphicon glyphicon-random" style="font-size:130px;margin-left:10px;color:white;margin-top:130px;"></span>
                             <p style="color:white;margin-left:50px;margin-top:10px;">发布课程</p>
 
@@ -69,15 +71,15 @@
                         <div class="layui-col-md2" style="height:200px;background-color:#90A8E3;">
                             <span class="glyphicon glyphicon-briefcase" style="font-size:130px;margin-left:10px;color:white;margin-top:10px;"></span>
                             <p style="color:white;margin-left:50px;margin-top:10px;">培养方案</p>
-                            
+
                         </div>
                         <div class="layui-col-md4" style="height:200px;background-color:#8E7AAA;">
                             <span class="glyphicon glyphicon-bullhorn" style="font-size:130px;margin-left:50px;color:white;margin-top:10px;"></span>
                             <p style="color:white;margin-left:50px;margin-top:10px;">已收公告</p>
                         </div>
-                        <div class="layui-col-md2" style="height:200px;background-color:#187D9A;">
+                        <div class="layui-col-md2" id="inquire" style="height:200px;background-color:#187D9A;">
                             <span class="glyphicon glyphicon-hdd" style="font-size:130px;margin-left:20px;color:white;margin-top:10px;"></span>
-                            <p style="color:white;margin-left:50px;margin-top:10px;">课程成绩与查询</p>
+                            <p style="color:white;margin-left:50px;margin-top:10px;">课程查询</p>
                         </div>
                         <div class="layui-col-md2" style="height:200px;background-color:#A0CF41;">
                             <span class="glyphicon glyphicon-subtitles" style="font-size:130px;margin-left:25px;color:white;margin-top:10px;"></span>
@@ -104,8 +106,43 @@
 
             </div>
         </div>
+        <div style="text-align:center">
+            <p>
+                版权所有：XXX有限开发公司
+                <img src="http://c.bwgl.cn/union_center/public/images/beian.png" alt="Alternate Text" />
+                <a href="https://beian.miit.gov.cn/#/Integrated/index">湘ICP备2021008814号</a>
+            </p>
+        </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <script src="~/Scripts/layui.js"></script>
+    
+    <script src="~/Scripts/teacher.js"></script>
+
+    @*<script>
+            var btn = document.getElementById("CourseRelease")
+            //alert(btn.)
+            btn.click(function ()
+            {
+                alert("1")
+             })
+        </script>*@
     <script>
         layui.use('element', function () {
             var element = layui.element;
@@ -115,14 +152,8 @@
                 console.log(data);
             });
         });
-        element.on('collapse(filter)', function (data) {
-            console.log(data.show); //得到当前面板的展开状态，true或者false
-            console.log(data.title); //得到当前点击面板的标题区域DOM对象
-            console.log(data.content); //得到当前点击面板的内容区域DOM对象
-        });
-        element.on('nav(filter)', function (elem) {
-            console.log(elem); //得到当前点击的DOM对象
-        });
+
+
 
     </script>
 </body>

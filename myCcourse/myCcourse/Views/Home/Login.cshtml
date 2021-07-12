@@ -10,61 +10,63 @@
     <link href="~/Content/css/modules/laydate/default/laydate.css" rel="stylesheet" />
     <link href="~/Content/css/modules/laydate/default/laydate.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/layui.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <style>
         body {
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
             background-color: #000000;
             background-image: url('../../images/background.jpg');
-            background-repeat:no-repeat;
-            background-attachment:fixed;
-            background-size:cover;
-            position :absolute;
-            zoom:1;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            position: absolute;
+            zoom: 1;
         }
 
         #login {
             margin-left: 1100px;
             margin-top: 300px;
             background-color: white;
-            width: 422px;
-            height: 300px;
-            
+            width: 450px;
+            height: 500px;
             border-radius: 20px;
             box-shadow: 0px 0px 12px 3px gray;
         }
-            /*#login:hover {
+        /*#login:hover {
                 animation: all 2s;
                 margin-top: 298px;
-            }*/   
+            }*/
         .col-sm-8 input {
-            width: 200px;
+            width: 240px;
         }
 
         .layui-tab li {
-            width: 132px;
+            width: 130px;
         }
 
         .layui-this {
             /*background-color: gray;*/
             /*border-radius: 20px;*/
         }
+        #font {
+            margin-left:20px;
+        }
     </style>
 </head>
 <body>
-    <div id="login" class="layui-anim layui-anim-scaleSpring" style="opacity: 50%;">
-        <div class="layui-tab">
-            <ul class="layui-tab-title">
-                <li class="layui-this" style="margin-left:14px;">学生登录</li>
-                <li>教师登录</li>
-                <li>管理员登录</li>
 
+    <div id="login" class="layui-anim layui-anim-scaleSpring" style="opacity: 50%;">
+        <div class="layui-tab " lay-filter="test">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="11" style="margin-left:20px;">学生登录</li>
+                <li lay-id="22">教师登录</li>
+                <li lay-id="33">管理员登录</li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <label style="width:400px;text-align:center;margin-bottom:10px;">学生登录</label>
-                    <label style="width:400px;text-align:center;margin-bottom:10px;">@ViewBag.Error2</label>
+                    <label style="width:450px;text-align:center;margin-bottom:10px;">学生登录</label>
+                    <label style="width:450px;text-align:center;margin-bottom:10px;">@ViewBag.Error2</label>
                     @*  *@
                     <form class="form-horizontal" action="/home/studentLogin" method="post">
                         <div class="form-group">
@@ -90,92 +92,196 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-10">
-                                <button type="submit" class="btn btn-default">登录</button>
+                                <button type="submit" class="layui-btn layui-btn-radius layui-btn-lg layui-btn-normal layui-btn-normal">
+                                    登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录
+                                </button>
                             </div>
                         </div>
-                    </form>。
-                </div>
-                <div class="layui-tab-item">
-                    <div class="layui-tab-item layui-show">
-                        <label style="width:400px;text-align:center;margin-bottom:10px;">教师登录</label>
-                        @*  *@
-                        <label style="width:400px;text-align:center;margin-bottom:10px;">@ViewBag.Error1</label>
-                        <form class="form-horizontal" action="/home/teacherLogin" method="post">
+                        @* 登录框下面的提示 *@
+                        <div id="font">
+                            <p>温馨提示：</p>
+                            <p>360浏览请使用极速模式</p>
+                            <p>
+                                建议使用
+                                <a href="https://support.microsoft.com/zh-cn/windows/internet-explorer-%E4%B8%8B%E8%BD%BD-d49e1f0d-571c-9a7b-d97e-be248806ca70">
+                                    IE10
+                                </a>
+                                +
+                                <a href="http://www.firefox.com.cn/download/">火狐</a>+
+                                <a href="https://www.google.cn/intl/zh-CN/chrome/">谷歌</a>
+                            </p>
+                            <p>系统维护：图文信息中心       联系电话：0743-**********（内线1459）</p>
+                            <p>
+                                版权所有：XXX有限开发公司
+                                <img src="http://c.bwgl.cn/union_center/public/images/beian.png" alt="Alternate Text" />
+                                <a href="https://beian.miit.gov.cn/#/Integrated/index">湘ICP备2021008814号</a>
+                            </p>
+                        </div>
+                    </form>
 
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-4 control-label">用户名：</label>
-                                <div class="col-sm-8">
-                                    <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="用户名">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                                <div class="col-sm-8">
-                                    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-4 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> 记住密码
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-4 col-sm-10">
-                                    <button type="submit" class="btn btn-default">登录</button>
-                                </div>
-                            </div>
-                        </form>。
-                    </div>
                 </div>
                 <div class="layui-tab-item">
-                    <div class="layui-tab-item layui-show">
-                        <label style="width:400px;text-align:center;margin-bottom:10px;">管理员登录</label>
-                        <label style="width:400px;text-align:center;margin-bottom:10px;">@ViewBag.Error</label>
-                        @*  *@
-                        <form class="form-horizontal" action="/home/adminLogin" method="post">
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-4 control-label">用户名：</label>
-                                <div class="col-sm-8">
-                                    <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Email">
+                    <label style="width:450px;text-align:center;margin-bottom:10px;">教师登录</label>
+                    @*  *@
+                    <label style="width:450px;text-align:center;margin-bottom:10px;">@ViewBag.Error1</label>
+                    <form class="form-horizontal" action="/home/teacherLogin" method="post">
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label ">用户名：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> 记住密码
+                                    </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                                <div class="col-sm-8">
-                                    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="layui-btn layui-btn-radius layui-btn-lg layui-btn-normal layui-btn-normal">
+                                    登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录
+                                </button>
+                            </div>
+                        </div>
+                        @* 登录框下面的提示 *@
+                        <div id="font">
+                            <p>温馨提示：</p>
+                            <p>360浏览请使用极速模式</p>
+                            <p>
+                                建议使用
+                                <a href="https://support.microsoft.com/zh-cn/windows/internet-explorer-%E4%B8%8B%E8%BD%BD-d49e1f0d-571c-9a7b-d97e-be248806ca70">
+                                    IE10
+                                </a>
+                                +
+                                <a href="http://www.firefox.com.cn/download/">火狐</a>+
+                                <a href="https://www.google.cn/intl/zh-CN/chrome/">谷歌</a>
+                            </p>
+                            <p>系统维护：图文信息中心       联系电话：0743-**********（内线1459）</p>
+
+                            <p>
+                                版权所有：XXX有限开发公司
+                                <img src="http://c.bwgl.cn/union_center/public/images/beian.png" alt="Alternate Text" />
+                                <a href="https://beian.miit.gov.cn/#/Integrated/index">湘ICP备2021008814号</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item">
+                    <label style="width:450px;text-align:center;margin-bottom:10px;">管理员登录</label>
+                    <label style="width:450px;text-align:center;margin-bottom:10px;">@ViewBag.Error</label>
+                    @*  *@
+                    <form class="form-horizontal" action="/home/adminLogin" method="post">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">用户名：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> 记住密码
+                                    </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-4 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> 记住密码
-                                        </label>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="layui-btn layui-btn-radius layui-btn-lg layui-btn-normal layui-btn-normal">
+                                    登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-4 col-sm-10">
-                                    <button type="submit" class="btn btn-default">登录</button>
-                                </div>
-                            </div>
-                        </form>。
-                    </div>
+                        </div>
+                        @* 登录框下面的提示 *@
+                        <div id="font">
+                            <p>温馨提示：</p>
+                            <p>360浏览请使用极速模式</p>
+                            <p>
+                                建议使用
+                                <a href="https://support.microsoft.com/zh-cn/windows/internet-explorer-%E4%B8%8B%E8%BD%BD-d49e1f0d-571c-9a7b-d97e-be248806ca70">
+                                    IE10
+                                </a>
+                                +
+                                <a href="http://www.firefox.com.cn/download/">火狐</a>+
+                                <a href="https://www.google.cn/intl/zh-CN/chrome/">谷歌</a>
+                            </p>
+                            <p>系统维护：图文信息中心       联系电话：0743-**********（内线1459）</p>
+
+                            <p>
+                                版权所有：XXX有限开发公司
+                                <img src="http://c.bwgl.cn/union_center/public/images/beian.png" alt="Alternate Text" />
+                                <a href="https://beian.miit.gov.cn/#/Integrated/index">湘ICP备2021008814号</a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <script src="~/Scripts/layui.js"></script>
+    
+    <script>
+        layui.use('element', function () {
+            var $ = layui.jquery
+                , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+            //触发事件
+            var active = {
+                tabAdd: function () {
+                    //新增一个Tab项
+                    element.tabAdd('demo', {
+                        title: '新选项' + (Math.random() * 1000 | 0) //用于演示
+                        , content: '内容' + (Math.random() * 1000 | 0)
+                        , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                    })
+                }
+                , tabDelete: function (othis) {
+                    //删除指定Tab项
+                    element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                    othis.addClass('layui-btn-disabled');
+                }
+                , tabChange: function () {
+                    //切换到指定Tab项
+                    element.tabChange('demo', '22'); //切换到：用户管理
+                }
+            };
+
+            $('.site-demo-active').on('click', function () {
+                var othis = $(this), type = othis.data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+
+            //Hash地址的定位
+            var layid = location.hash.replace(/^#test=/, '');
+            element.tabChange('test', layid);
+
+            element.on('tab(test)', function (elem) {
+                location.hash = 'test=' + $(this).attr('lay-id');
+            });
+
+        });
+    </script>
 </body>
 </html>
-<script>
-    //立即执行事件
-    $(function () {
-
-    })
-    $("")
-</script>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    @*<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css" media="all">*@
+    <link href="~/Content/css/layui.css" rel="stylesheet" media="all" />
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+    <table id="demo" lay-filter="test"></table>
+        
+
+
+    <script src="~/Scripts/layui.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                , height: 312
+                , url: '/admin/json' //数据接口
+                , page: true //开启分页
+                , cols: [[ //表头
+                    { field: 'c_id', title: 'ID', width: 80, sort: true, fixed: 'left' }
+                    , { field: 'college', title: '用户名', width: 80 }
+                    
+                ]]
+                , parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": res.status, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                        "count": res.total, //解析数据长度
+                        "data": res.data.item //解析数据列表
+                    };
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

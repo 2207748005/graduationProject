@@ -8,6 +8,8 @@
     <title>Index</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <style>
         div {
             border: solid 5px white;
@@ -15,7 +17,7 @@
     </style>
 </head>
 <body>
-
+    @* 学生 *@
 
     <ul class="layui-nav" style="text-align: right;">
         <li class="layui-nav-item">
@@ -29,7 +31,7 @@
             <dl class="layui-nav-child">
                 <dd><a href="javascript:;">修改信息</a></dd>
                 <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退出</a></dd>
+                <dd><a href="/Student/Quit">退出</a></dd>
             </dl>
         </li>
     </ul>
@@ -38,26 +40,27 @@
         @* 头部 *@
         <div style="text-align:center;margin-top:50px"><h1>学生选课系统</h1></div>
         @* 栅格系统 *@
-        <div style="margin-top:60px;">
+        <div style="margin-top:60px;" id="show">
             <div class="layui-row layui-col-space5">
                 <div class="layui-col-md12">
                     <div class="layui-row grid-demo">
-                        <div class="layui-col-md4" style="height:400px;background-color:#09619F;">
+
+                        <div class="layui-col-md4" id="Information" style="height:400px;background-color:#09619F;">
                             @*//矢量图标*@
                             <span class="glyphicon glyphicon-user" style="font-size:130px;margin-left:50px;color:white;margin-top:130px;">
                             </span>
-                        <p style="position: relative;left:200px;top:-90px;color:white;">
-                            姓名：@ViewBag.studentName
-                            <br />
-                            <br />
-                            学院：@ViewBag.collegeName
-                            <br />
-                            <br />
-                            班级：@ViewBag.classNum 班
-                        </p>
+                            <p style="position: relative;left:200px;top:-90px;color:white;">
+                                姓名：@ViewBag.studentName
+                                <br />
+                                <br />
+                                学院：@ViewBag.collegeName
+                                <br />
+                                <br />
+                                班级：@ViewBag.classNum 班
+                            </p>
                             <p style="color:white;margin-left:80px;margin-top:10px;position: relative;top:-90px;color:white;">个人信息</p>
                         </div>
-                        <div class="layui-col-md2" style="height:400px;background-color:#4FB5C7;">
+                        <div class="layui-col-md2" id="selectCourse" style="height:400px;background-color:#4FB5C7;">
                             <span class="glyphicon glyphicon-random" style="font-size:130px;margin-left:10px;color:white;margin-top:130px;"></span>
                             <p style="color:white;margin-left:50px;margin-top:10px;">选课中心</p>
 
@@ -79,7 +82,7 @@
                             <span class="glyphicon glyphicon-bullhorn" style="font-size:130px;margin-left:50px;color:white;margin-top:10px;"></span>
                             <p style="color:white;margin-left:50px;margin-top:10px;">已收公告</p>
                         </div>
-                        <div class="layui-col-md2" style="height:200px;background-color:#187D9A;">
+                        <div class="layui-col-md2" id="select" style="height:200px;background-color:#187D9A;">
                             <span class="glyphicon glyphicon-hdd" style="font-size:130px;margin-left:20px;color:white;margin-top:10px;"></span>
                             <p style="color:white;margin-left:30px;margin-top:10px;">课程成绩与查询</p>
                         </div>
@@ -108,26 +111,28 @@
 
             </div>
         </div>
+        <div style="text-align:center">
+            <p>
+                版权所有：XXX有限开发公司
+                <img src="http://c.bwgl.cn/union_center/public/images/beian.png" alt="Alternate Text" />
+                <a href="https://beian.miit.gov.cn/#/Integrated/index">湘ICP备2021008814号</a>
+            </p>
+        </div>
     </div>
     <script src="~/Scripts/layui.js"></script>
     <script>
-        layui.use('element', function () {
-            var element = layui.element;
-
-            //一些事件触发
-            element.on('nav(demo)', function (data) {
-                console.log(data);
-            });
-        });
-        element.on('collapse(filter)', function (data) {
-            console.log(data.show); //得到当前面板的展开状态，true或者false
-            console.log(data.title); //得到当前点击面板的标题区域DOM对象
-            console.log(data.content); //得到当前点击面板的内容区域DOM对象
-        });
-        element.on('nav(filter)', function (elem) {
-            console.log(elem); //得到当前点击的DOM对象
-        });
-
+        $("#Information").on("click", function () {
+            confirm("确认要查看个人信息")
+            window.location.href = "/Student/Information"
+        })
+        $("#selectCourse").on("click", function () {
+            confirm("注意！开始选课了")
+            window.location.href = "/Student/selectCourse"
+        })
+        $("#select").on("click", function () {
+            
+            window.location.href = "/Student/Inquire"
+        })
     </script>
 </body>
 </html>

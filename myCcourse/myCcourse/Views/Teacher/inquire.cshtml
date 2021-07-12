@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "inquire";
+    Layout = "~/Views/Shared/_TeacherPage.cshtml";
+}
+
+<div style="text-align:center;margin-top:50px"><h1>课程查询</h1></div>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>编号</td>
+                <td>课程</td>
+                <td>发布人</td>
+                <td>地点</td>
+                <td>时间</td>
+                <td>备注</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="show">
+            @foreach (var t in Model)
+            {
+
+                foreach (var i in t.informs)
+                {
+                    <tr>
+                        <td>@i.i_id</td>
+                        <td>@t.teacher_Type</td>
+                        <td>@t.t_name</td>
+                        <td>@i.place</td>
+                        <td>@i.datatime</td>
+                        <td>@i.message</td>
+                        <td>
+                        @using (Ajax.BeginForm("Delte", "Teacher", new { i_id = i.i_id }, new AjaxOptions 
+                        {
+                            Confirm="确认删除吗？",
+                            HttpMethod = "get",
+                            InsertionMode=InsertionMode.Replace,
+                            UpdateTargetId="show"
+                        })) 
+                        {
+                            <button class="btn btn-danger">删除</button>
+                        }
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
+

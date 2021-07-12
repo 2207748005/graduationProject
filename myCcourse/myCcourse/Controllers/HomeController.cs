@@ -10,7 +10,7 @@ namespace myCcourse.Controllers
     public class HomeController : Controller
     {
         //实例化模型类
-        CourseEntities4 db = new CourseEntities4();
+        CourseEntities6 db = new CourseEntities6();
 
         // GET: Home
         public ActionResult Index()

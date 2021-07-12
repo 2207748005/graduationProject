@@ -23,3 +23,29 @@
     </script>
 </body >
 </html >
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>学院</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.c_id</td>
+                <td>@item.collegeName</td>
+                <th>
+                    <button type="button" class="layui-btn">删除</button>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

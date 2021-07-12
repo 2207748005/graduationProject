@@ -19,26 +19,52 @@
         </thead>
         <tbody>
             @*@foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.c_id</td>
-            </tr>
-        }*@
+                {
+                    <tr>
+                        <td>@item.c_id</td>
+                    </tr>
+                }*@
             @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.c_id</td>
-                <td>@item.collegeName</td>
-                <td>@item.grade</td>
-                <td>@item.classNum</td>
-                <th>
-                    <button type="button" class="layui-btn">删除</button>
-                </th>
-            </tr>
-        }
+            {
+                <tr>
+                    <td>@item.c_id</td>
+                    <td>@item.collegeName</td>
+                    <td>@item.grade</td>
+                    <td>@item.classNum</td>
+                    <th>
+                        <div class="layui-btn-group">
+                            <button type="button" class="layui-btn ">编辑</button>
+                            <button type="button" class="layui-btn">删除</button>
+                        </div>
+                    </th>
+                </tr>
+            }
         </tbody>
     </table>
+    <button id="btn" class="btn btn-danger">添加</button>
 </div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/layui.js"></script>
+<script>
+    layui.use('layer', function () {
+        var layer = layui.layer;
+
+        layer.msg('hello');
+        $("#btn").on("click", function () {
+            layer.open({
+                type: 1,
+                title: false,
+                area: ['600px', '360px'],
+                closeBtn: 0,
+                shadeClose: true,
+                skin: 'yourclass',
+                content: '\<\div style="padding:20px;">自定义内容\<\/div>'
+            });
+        });
+    }
+</script>
+
 
 
 

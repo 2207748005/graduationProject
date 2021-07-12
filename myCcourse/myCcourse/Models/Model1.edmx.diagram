@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e28a9ca7b7cd482395d1897092f8f2cd" Name="Diagram1">
-        <EntityTypeShape EntityType="CourseModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.arrangement" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CourseModel.inform" Width="1.5" PointX="5.25" PointY="4.5" />
-        <EntityTypeShape EntityType="CourseModel.teacher" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="CourseModel.teacher_Type" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="CourseModel.View_teacer_Type" Width="1.5" PointX="7.75" PointY="0.75" />
-        <AssociationConnector Association="CourseModel.FK__inform__in_id__628FA481" />
-        <AssociationConnector Association="CourseModel.FK__teacher__t_type__5DCAEF64" />
-        <EntityTypeShape EntityType="CourseModel.class" Width="1.5" PointX="10" PointY="5.25" />
-        <EntityTypeShape EntityType="CourseModel.college" Width="1.5" PointX="7.75" PointY="5.5" />
-        <EntityTypeShape EntityType="CourseModel.student" Width="1.5" PointX="12.875" PointY="3" />
-        <EntityTypeShape EntityType="CourseModel.View_student_class_college" Width="1.5" PointX="0.75" PointY="8.75" />
-        <AssociationConnector Association="CourseModel.FK__class__cl_id__73BA3083" />
-        <AssociationConnector Association="CourseModel.FK__student__st_id__76969D2E" />
-        <EntityTypeShape EntityType="CourseModel.Viewt_class_college" Width="1.5" PointX="3.375" PointY="8.75" />
+      <Diagram DiagramId="58ad5933637d4afab85b02b7e9823bc2" Name="Diagram1">
+        <EntityTypeShape EntityType="CourseModel.Admin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.arrangement" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.college" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.inform" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.shop" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.student" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.teacher" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.View_student_class_college" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.Viewt_class_college" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="CourseModel.FK__inform__in_id__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK_shop_inform" />
+        <AssociationConnector Association="CourseModel.FK_shop_student" />
+        <AssociationConnector Association="CourseModel.FK_shop_teacher" />
+        <EntityTypeShape EntityType="CourseModel.cust" Width="1.5" PointX="3" PointY="12.375" />
+        <AssociationConnector Association="CourseModel.FK__class__cl_id__73BA30831" />
+        <AssociationConnector Association="CourseModel.FK__student__st_id__76969D2E1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

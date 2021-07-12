@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "CourseRelease";
+    Layout = "~/Views/Shared/_TeacherPage.cshtml";
+}
+
+<div class="container">
+    <div style="text-align:center;margin-top:50px"><h1>课程发布</h1></div>
+    <form action="/Teacher/CourseReleaseSubmit" method="post">
+        <table class="table table-bordered">
+            <tr>
+                <td>课程信息</td>
+                <td><input type="text" name="message" value="" /></td>
+            </tr>
+            <tr>
+                <td>地点</td>
+                <td><input type="text" name="place" value="" /></td>
+            </tr>
+        </table>
+        <button class="layui-btn layui-btn-lg">发布</button>
+    </form>
+</div>
+
